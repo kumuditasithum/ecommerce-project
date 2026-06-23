@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Chatbot</title>
+    <style>
+        .form{
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        p{
+            font-size: 23px;
+        }
+        input{
+            margin-bottom: 10px;
+            padding: 7px 0px 7px 11px;
+            width: 200px;
+        }
+        button{
+            margin-top: 5px;
+            margin-right: 5px;
+            color: white;
+            background-color: rgb(0, 123, 255);
+            border: none;
+            padding: 10px;
+            border-radius: 5px;
+        }
+    </style>
+  </head>
+  <body>
+    <div class="js-container"></div>
+
+    <script src="https://unpkg.com/supersimpledev@8.6.4/external-library.js"></script>
+
+    <script src="https://unpkg.com/supersimpledev/react.js"></script>
+    <script src="https://unpkg.com/supersimpledev/react-dom.js"></script>
+
+    <script src="https://unpkg.com/supersimpledev/babel.js"></script>
+    <script type="text/babel">
+
+        function LoginForm(){
+            const [showPassword, setShowPassword] =  React.useState(false);
+            function showPass(){setShowPassword(!showPassword)};
+            return(
+                <div className="form">
+                <p>Hello, welcome to my website </p>
+                <div>
+                    <div>
+                        <input type="text" placeholder="Email" />
+                    </div>
+                    <input type={showPassword ? "text" : "password"} placeholder="Password" />
+                    <button onClick={showPass}>Show</button>
+                </div>
+                <button>Login</button>
+                <button>Sign up</button>
+                </div>
+            );
+        }
+        
+        function App(){
+            return(
+                <LoginForm />
+            );  
+        }
+      const container = document.querySelector('.js-container');
+      ReactDOM.createRoot(container).render(<App></App>);
+    </script>
+  </body>
+</html>
