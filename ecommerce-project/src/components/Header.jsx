@@ -3,6 +3,7 @@ import './header.css';
 import logoWhite from '../assets/images/logo-white.png'
 import mobileLogo from '../assets/images/mobile-logo-white.png'
 import cartIcon from '../assets/images/icons/cart-icon.png'
+import searchIcon from '../assets/images/icons/search-icon.png'
 
 
 export function Header() {
@@ -18,7 +19,7 @@ export function Header() {
         <input className="search-bar" type="text" placeholder="Search" />
 
         <button className="search-button">
-          <img className="search-icon" src="images/icons/search-icon.png" />
+          <img className={searchIcon} />
         </button>
       </div>
 
