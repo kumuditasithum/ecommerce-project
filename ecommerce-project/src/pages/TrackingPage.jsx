@@ -19,7 +19,15 @@ export function TrackingPage({cart}) {
   },[orderId])
   
   if(!order){return null}
- const product = order.products.find((product) => product.productId ===productId)
+
+  const product = order.products.find((product) => product.productId ===productId);
+  const totalDeliveryTimeMs = product.estimatedDeliveryTimeMs - order.orderTimeMs;
+  const timePassedMs = dayjs().valueOf() - order.orderTimeMs;
+  let deliveryPercent = (timePassedMs/ totalDeliveryTimeMs) * 100; 
+  if (deliveryPercent > 100){ deliveryPercent = 100;}
+  const isPreparing = deliveryPercent < 33;
+  const isShipped = deliveryPercent > 33 && deliveryPercent < 100;
+  const isDeliverd = deliveryPercent === 100;
   return (
     <>
      <Link rel="icon" type="image/svg+xml" to="tracking-favicon.png" />
@@ -31,7 +39,7 @@ export function TrackingPage({cart}) {
             View all orders
           </Link >
 
-          <div className="delivery-date">Arriving on {dayjs(product.estimatedDeliveryTimeMs)
+          <div className="delivery-date">{deliveryPercent >= 100 ? "Deliverd on" : "Arriving on" } {dayjs(product.estimatedDeliveryTimeMs)
             .format("dddd, MMMM D")}</div>
 
           <div className="product-info">
@@ -46,13 +54,13 @@ export function TrackingPage({cart}) {
           />
 
           <div className="progress-labels-container">
-            <div className="progress-label">Preparing</div>
-            <div className="progress-label current-status">Shipped</div>
-            <div className="progress-label">Delivered</div>
+            <div className={`pogress-label ${isPreparing && 'current-status'}`}>Preparing</div>
+            <div className={`pogress-label ${isShipped && 'current-status'}`}>Shipped</div>
+            <div className={`pogress-label ${isDeliverd && 'current-status'}`}>Delivered</div>
           </div>
 
           <div className="progress-bar-container">
-            <div className="progress-bar"></div>
+            <div className="progress-bar" style={{width: `${deliveryPercent}%`}}></div>
           </div>
         </div>
       </div>
