@@ -5,7 +5,7 @@ import { OrderSummery } from "./OrderSummery";
 import { PaymentSummary } from "./PaymentSummary";
 import "./CheckoutPage.css";
 
-export function CheckoutPage({ cart }) {
+export function CheckoutPage({ cart, loadCart }) {
   const [deliveryOptions, setDeliveryOptions] = useState([]);
   const [paymentSummery, setPaymentSummery] = useState([null]);
 
@@ -18,7 +18,7 @@ export function CheckoutPage({ cart }) {
     }
     fetchCheckoutData();
 
-  }, []);
+  }, [cart]);
   return (
     <>
       <title>Checkout</title>
@@ -28,7 +28,7 @@ export function CheckoutPage({ cart }) {
         <div className="page-title">Review your order</div>
 
         <div className="checkout-grid">
-          <OrderSummery deliveryOptions={deliveryOptions} cart={cart} />
+          <OrderSummery deliveryOptions={deliveryOptions} cart={cart} loadCart={loadCart} />
           <PaymentSummary paymentSummery={paymentSummery} />
           
         </div>
