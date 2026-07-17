@@ -1,3 +1,4 @@
+
 import { formatMoney } from "../../utils/money";
 
 export function CartItemDetails({cartItem}) {
@@ -19,6 +20,7 @@ export function CartItemDetails({cartItem}) {
           <span className="delete-quantity-link link-primary">Delete</span>
         </div>
       </div>
+
     </>
   );
 }
