@@ -49,7 +49,7 @@ export function Product({product, loadCart}) {
       <select
         value={quantity}
         onChange={selectQuantity}
-        data-testId ='quantitiySelector'
+        data-testid ='quantitiySelector'
       >
         <option value="1">1</option>
         <option value="2">2</option>

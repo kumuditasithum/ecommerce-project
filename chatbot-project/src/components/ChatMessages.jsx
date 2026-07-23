@@ -14,7 +14,7 @@ function useAutoScroll(dependencies){
     },dependencies); 
     return containerRef;
 }
-function ChatMessages({chatMessages}){
+function ChatMessages({chatMessages, selectedCharacter}){
   const chatMessagesRef = useAutoScroll([chatMessages]);
   useAutoScroll().dependencies;
   return(
@@ -25,6 +25,7 @@ function ChatMessages({chatMessages}){
                   sender = {chatMessage.sender}
                   key = {chatMessage.id}
                   time = {chatMessage.time}
+                  selectedCharacter={selectedCharacter}
                 />);
       })}
     </div>

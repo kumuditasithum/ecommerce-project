@@ -1,7 +1,14 @@
-import RobotProfieImage from '../assets/choco.webp';
+import RobotProfileImage from '../assets/robot.png';
+import ChocoProfileImage from '../assets/choco.webp';
 import UserProfileImage from '../assets/user.png';
 import './chatMessage.css';
-export function ChatMessage({message, sender, time}){
+
+const characters = {
+  robot: RobotProfileImage,
+  choco: ChocoProfileImage,
+};
+
+export function ChatMessage({message, sender, time, selectedCharacter}){
   //const message = props.message;
   //const sender = props.sender;
   //const {message, sender} = props;
@@ -14,6 +21,7 @@ export function ChatMessage({message, sender, time}){
       </div>
     );
   }*/
+ const profileImage = characters[selectedCharacter];
   return (
     <div className={
       sender === 'user' 
@@ -21,7 +29,7 @@ export function ChatMessage({message, sender, time}){
         : 'chat-message-robot'
     }>
       {sender === 'chatbot' && (
-        <img src={RobotProfieImage} className="chat-message-profile" />
+        <img src={profileImage} className="chat-message-profile" />
       )}
       <div
         className="chat-message-text">
